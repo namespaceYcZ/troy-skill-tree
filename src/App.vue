@@ -1,9 +1,6 @@
 <template>
-  <!-- the original content -->
-  <!--
-  <img alt="Vue logo" src="./assets/logo.png" />
-  -->
-  <hello-world msg="Hello Vue 3.0 + Vite"/>
+  <img alt="Vue logo" src="./assets/logo.png"/>
+  <hello-world msg="Hello Vue 3 + Vite"/>
   <single-skill-tree></single-skill-tree>
 </template>
 
@@ -19,3 +16,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+</style>
+
+
