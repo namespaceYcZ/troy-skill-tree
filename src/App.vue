@@ -1,6 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png"/>
-  <hello-world msg="Hello Vue 3 + Vite"/>
+<!--  <img alt="Vue logo" src="./assets/logo.png"/>
+  <hello-world msg="Hello Vue 3 + Vite"/>-->
   <single-skill-tree></single-skill-tree>
 </template>
 
