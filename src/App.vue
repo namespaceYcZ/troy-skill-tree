@@ -3,7 +3,8 @@
   <img alt="Vue logo" src="./assets/logo.png"/>
   <hello-world msg="Hello Vue 3 + Vite"/>
   -->
-  <single-skill-tree style="width: 90%;margin-left: 5%;margin-right: 5%"
+
+  <single-skill-tree style="width: 90%;margin-left: 5%;margin-right: 5%;margin-bottom: 100px"
                      :skill-tree="allSkillTrees['troy_adi_archer_teucer']"/>
 
 </template>
