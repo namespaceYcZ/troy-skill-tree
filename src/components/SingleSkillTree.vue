@@ -7,19 +7,19 @@
       <td style="text-align: center; width: 25%">初始技能右</td>
       <td style="width: 25%">特化技能右</td>
     </tr>
-    <tr>
+    <tr v-if="skillTree.first">
       <td rowspan="2">1</td>
       <td style="border-bottom: none"></td>
       <td colspan="2" rowspan="2">{{ skillTree.first.zhCnName }}<br>{{ skillTree.first.description }}</td>
       <td style="border-bottom: none"></td>
     </tr>
-    <tr>
+    <tr v-if="skillTree.first">
       <td style="border-top: none"></td>
       <td style="border-top: none"></td>
     </tr>
     <template v-for="row in skillTree.rows">
       <tr>
-        <td rowspan="2">{{ row.tier }}</td>
+        <td rowspan="2">{{ skillTree.first ? row.tier : row.tier - 1 }}</td>
         <td :style="row.leftDown?'border: 1px solid black;':'border: 0'">
           {{ row.leftUp.zhCnName }}<br>{{ row.leftUp.description }}
         </td>
