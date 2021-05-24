@@ -1,0 +1,99 @@
+{
+  "factions": {
+    "penthsilea": {
+      "name": "彭忒西勒亚",
+      "types": {
+        "agent": {
+          "name": "事务官",
+          "trees": {
+            "troy_agent_envoy_horde_amazons_skill_set": "使者",
+            "troy_agent_priest_horde_amazons_skill_set": "女祭司",
+            "troy_agent_spy_horde_amazons_skill_set": "间谍"
+          }
+        },
+        "hero": {
+          "name": "英雄",
+          "trees": {
+            "troy_hero_penthesilea_skill_set": "彭忒西勒亚",
+            "troy_dlc1_pen_archer_skirmisher_set": "射手-奇袭者",
+            "troy_dlc1_pen_archer_trickster_set": "射手-诡诈师",
+            "troy_dlc1_pen_hero_fighter_balanced_set": "战士-冠军勇士",
+            "troy_dlc1_pen_hero_fighter_disruptor_set": "战士-掠夺者",
+            "troy_dlc1_pen_hero_fighter_killer_set": "战士-征服者",
+            "troy_dlc1_pen_hero_warlord_tactician_set": "领主-指挥",
+            "troy_dlc1_pen_hero_warlord_utility_set": "领主-导师",
+            "troy_dlc1_pen_hero_warlord_warmonger_set": "领主-战狂"
+          }
+        }
+      }
+    },
+    "hippolyta": {
+      "name": "希波吕忒",
+      "types": {
+        "agent": {
+          "name": "事务官",
+          "trees": {
+            "troy_agent_envoy_trojan_amazons_skill_set": "使者",
+            "troy_agent_priest_hep_trojan_amazons_skill_set": "女祭司",
+            "troy_agent_spy_trojan_amazons_skill_set": "间谍"
+          }
+        },
+        "hero": {
+          "name": "英雄",
+          "trees": {
+            "troy_hero_hippolyta_skill_set": "希波吕忒",
+            "troy_dlc1_hip_archer_skirmisher_set": "射手-奇袭者",
+            "troy_dlc1_hip_archer_trickster_set": "射手-诡诈师",
+            "troy_dlc1_hip_hero_fighter_balanced_set": "战士-冠军勇士",
+            "troy_dlc1_hip_hero_fighter_disruptor_set": "战士-掠夺者",
+            "troy_dlc1_hip_hero_fighter_killer_set": "战士-征服者",
+            "troy_dlc1_hip_hero_warlord_tactician_set": "领主-指挥",
+            "troy_dlc1_hip_hero_warlord_utility_set": "领主-导师",
+            "troy_dlc1_hip_hero_warlord_warmonger_set": "领主-战狂"
+          }
+        }
+      }
+    },
+    "common": {
+      "name": "通用",
+      "types": {
+        "agent": {
+          "name": "事务官",
+          "trees": {
+            "troy_agent_envoy_achaeans_skill_set": "使者",
+            "troy_agent_priest_achaeans_skill_set": "女祭司",
+            "troy_agent_spy_achaeans_skill_set": "间谍"
+          }
+        },
+        "epic": {
+          "name": "史诗英雄",
+          "trees": {
+            "troy_hero_achilles_skill_set": "阿喀琉斯",
+            "troy_hero_aeneas_skill_set": "埃涅阿斯",
+            "troy_hero_agamemnon_skill_set": "阿伽门农",
+            "troy_hero_ajax_skill_set": "埃阿斯",
+            "troy_hero_diomedes_skill_set": "狄俄墨德斯",
+            "troy_hero_hector_skill_set": "赫克托耳",
+            "troy_hero_menelaus_skill_set": "墨涅拉俄斯",
+            "troy_hero_odysseus_skill_set": "奥德修斯",
+            "troy_hero_paris_skill_set": "帕里斯",
+            "troy_hero_sarpedon_skill_set": "萨尔珀冬"
+          }
+        },
+        "hero": {
+          "name": "英雄",
+          "trees": {
+            "troy_dlc1_hip_archer_skirmisher_set": "射手-奇袭者",
+            "troy_dlc1_hip_archer_trickster_set": "射手-诡诈师",
+            "troy_dlc1_hip_hero_fighter_balanced_set": "战士-冠军勇士",
+            "troy_dlc1_hip_hero_fighter_disruptor_set": "战士-掠夺者",
+            "troy_dlc1_hip_hero_fighter_killer_set": "战士-征服者",
+            "troy_dlc1_hip_hero_warlord_tactician_set": "领主-指挥",
+            "troy_dlc1_hip_hero_warlord_utility_set": "领主-导师",
+            "troy_dlc1_hip_hero_warlord_warmonger_set": "领主-战狂"
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,16 +3,33 @@
   <img alt="Vue logo" src="./assets/logo.png"/>
   <hello-world msg="Hello Vue 3 + Vite"/>
   -->
-
+  <select style="text-align: left;margin-left: 5%;" v-model="currentFaction" @change="factionSelected">
+    <option value="">请选择派系</option>
+    <option v-for="(value,key) in allOptions['factions']" :value="key">{{ value.name }}</option>
+  </select>
+  <select style="text-align: left;margin-left: 5%;" v-model="currentType" @change="typeSelected">
+    <option value="">请选择分类</option>
+    <option v-for="(value,key) in allOptions['factions'][currentFaction]['types']" :value="key">
+      {{ value.name }}
+    </option>
+  </select>
+  <select style="text-align: left;margin-left: 5%;" v-model="currentTree" @change="treeSelected">
+    <option value="">请选择角色</option>
+    <option v-for="(value,key) in currentTrees" :value="key">
+      {{ value }}
+    </option>
+  </select>
+  <div style="margin: 10px;text-align: center">当前技能树：{{ currentTreeName }}</div>
   <single-skill-tree style="width: 90%;margin-left: 5%;margin-right: 5%;margin-bottom: 100px"
-                     :skill-tree="allSkillTrees['troy_adi_archer_teucer']"/>
+                     :skill-tree="allSkillTrees[currentTree]"/>
 
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import SingleSkillTree from "./components/SingleSkillTree.vue";
-import data from "./assets/data.json";
+import skillTrees from "./assets/skill-tree-data.json";
+import options from "./assets/options.json";
 
 export default {
   name: 'App',
@@ -22,8 +39,32 @@ export default {
   },
   data() {
     return {
-      allSkillTrees: data
+      currentFaction: "common",
+      currentTypes: {},
+      currentType: "epic",
+      currentTrees: {},
+      currentTree: "troy_hero_achilles_skill_set",
+      currentTreeName: "阿喀琉斯",
+      allSkillTrees: skillTrees,
+      allOptions: options
     }
+  },
+  methods: {
+    factionSelected() {
+      this.currentTypes = this.allOptions['factions'][this.currentFaction]['types'];
+      this.currentTrees = {};
+    },
+    typeSelected() {
+      this.currentTrees = this.currentTypes[this.currentType]['trees']
+    },
+    treeSelected() {
+      console.log(this.currentTree)
+      this.currentTreeName = this.currentTrees[this.currentTree]
+      console.log(this.currentTreeName)
+    }
+  },
+  mounted() {
+    console.log("start!")
   }
 }
 </script>

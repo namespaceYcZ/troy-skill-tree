@@ -144,5 +144,6 @@ table, table tr th, table tr td {
 
 table {
   border-collapse: collapse;
+  text-align: center;
 }
 </style>
