@@ -83,14 +83,17 @@
         "hero": {
           "name": "英雄",
           "trees": {
-            "troy_dlc1_hip_archer_skirmisher_set": "射手-奇袭者",
-            "troy_dlc1_hip_archer_trickster_set": "射手-诡诈师",
-            "troy_dlc1_hip_hero_fighter_balanced_set": "战士-冠军勇士",
-            "troy_dlc1_hip_hero_fighter_disruptor_set": "战士-掠夺者",
-            "troy_dlc1_hip_hero_fighter_killer_set": "战士-征服者",
-            "troy_dlc1_hip_hero_warlord_tactician_set": "领主-指挥",
-            "troy_dlc1_hip_hero_warlord_utility_set": "领主-导师",
-            "troy_dlc1_hip_hero_warlord_warmonger_set": "领主-战狂"
+            "troy_main_archer_skirmisher_set": "射手-奇袭者",
+            "troy_main_archer_trickster_set": "射手-诡诈师",
+            "troy_main_hero_defender_aggro_set": "卫士-宿将",
+            "troy_main_hero_defender_quick_set": "卫士-盾友",
+            "troy_main_hero_defender_tank_set": "卫士-守卫",
+            "troy_main_hero_fighter_balanced_set": "战士-冠军勇士",
+            "troy_main_hero_fighter_disruptor_set": "战士-掠夺者",
+            "troy_main_hero_fighter_killer_set": "战士-征服者",
+            "troy_main_hero_warlord_tactician_set": "领主-指挥",
+            "troy_main_hero_warlord_utility_set": "领主-导师",
+            "troy_main_hero_warlord_warmonger_set": "领主-战狂"
           }
         }
       }
