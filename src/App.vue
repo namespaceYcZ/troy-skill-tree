@@ -51,20 +51,29 @@ export default {
   },
   methods: {
     factionSelected() {
+      console.log("faction selected:" + this.currentFaction)
       this.currentTypes = this.allOptions['factions'][this.currentFaction]['types'];
+      this.currentType = "";
       this.currentTrees = {};
+      this.currentTree = "";
     },
     typeSelected() {
+      console.log("type selected:" + this.currentType)
       this.currentTrees = this.currentTypes[this.currentType]['trees']
     },
     treeSelected() {
-      console.log(this.currentTree)
+      console.log("tree selected:" + this.currentTree)
       this.currentTreeName = this.currentTrees[this.currentTree]
-      console.log(this.currentTreeName)
+      console.log("tree selected(name):" + this.currentTreeName)
+      // console.log("currentTree:" + JSON.stringify(this.allSkillTrees[this.currentTree]))
     }
   },
   mounted() {
     console.log("start!")
+    this.currentFaction = "common";
+    this.currentTypes = this.allOptions['factions'][this.currentFaction]['types'];
+    this.currentType = "epic";
+    this.currentTrees = this.currentTypes[this.currentType]['trees']
   }
 }
 </script>

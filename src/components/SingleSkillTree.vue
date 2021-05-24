@@ -19,7 +19,7 @@
     </tr>
     <template v-for="row in skillTree.rows">
       <tr>
-        <td rowspan="2">{{row.tier}}</td>
+        <td rowspan="2">{{ row.tier }}</td>
         <td :style="row.leftDown?'border: 1px solid black;':'border: 0'">
           {{ row.leftUp.zhCnName }}<br>{{ row.leftUp.description }}
         </td>
@@ -56,9 +56,9 @@ export default {
             "indent": 3,
             "unlockAtRank": 0,
             "enName": "Flights of Artemis",
-            "zhCnName": "阿耳忒弥斯之急速",
+            "zhCnName": "测试：初始技能",
             "imagePath": "skill_node_icon_relentless_pursuit.png",
-            "description": "“阿耳忒弥斯之急速”能力（1.0）|该英雄生命值+2.5%"
+            "description": "测试：初始技能描述"
           },
           "rows": [
             {
@@ -69,9 +69,9 @@ export default {
                 "indent": 3,
                 "unlockAtRank": 1,
                 "enName": "Centaur Drill",
-                "zhCnName": "半人马训练",
+                "zhCnName": "测试-第二阶技能右",
                 "imagePath": "skill_node_icon_born_with_the_bow.png",
-                "description": "“半人马训练”能力（1.0）|该英雄生命值+2.5%"
+                "description": "测试-第二阶技能右描述"
               },
               "rightDown": {
                 "skillNodeSetKey": "troy_adi_archer_teucer",
@@ -80,9 +80,9 @@ export default {
                 "indent": 2,
                 "unlockAtRank": 0,
                 "enName": "Centaur Drill (Increased Reload Speed)",
-                "zhCnName": "半人马训练（提升装填速度）",
+                "zhCnName": "测试-第二阶技能右下",
                 "imagePath": "skill_node_icon_generic_attack_interval.png",
-                "description": "替换“半人马训练”能力（1.0）|“半人马训练（提升装填速度）”特化（1.0）|该英雄生命值+2.5%"
+                "description": "测试-第二阶技能右下描述"
               },
               "rightUp": {
                 "skillNodeSetKey": "troy_adi_archer_teucer",
@@ -91,9 +91,9 @@ export default {
                 "indent": 1,
                 "unlockAtRank": 0,
                 "enName": "Centaur Drill (Speed)",
-                "zhCnName": "半人马训练（移速）",
+                "zhCnName": "测试-第二阶技能右上",
                 "imagePath": "skill_node_icon_generic_battle_speed.png",
-                "description": "替换“半人马训练”能力（1.0）|“半人马训练（移速）”特化（1.0）|该英雄生命值+2.5%"
+                "description": "测试-第二阶技能右上描述"
               },
               "left": {
                 "skillNodeSetKey": "troy_adi_archer_teucer",
@@ -102,9 +102,9 @@ export default {
                 "indent": 6,
                 "unlockAtRank": 1,
                 "enName": "Cheat Hades",
-                "zhCnName": "欺骗哈得斯",
+                "zhCnName": "测试-第二阶技能左",
                 "imagePath": "skill_icon_feign_death.png",
-                "description": "“欺骗哈得斯”能力（1.0）|该英雄生命值+2.5%"
+                "description": "测试-第二阶技能左描述"
               },
               "leftDown": {
                 "skillNodeSetKey": "troy_adi_archer_teucer",
@@ -113,9 +113,9 @@ export default {
                 "indent": 5,
                 "unlockAtRank": 0,
                 "enName": "Cheat Hades (Stamina)",
-                "zhCnName": "欺骗哈得斯（耐力）",
+                "zhCnName": "测试-第二阶技能左下",
                 "imagePath": "skill_node_icon_generic_rage.png",
-                "description": "“欺骗哈得斯（耐力）”特化（1.0）|替换“欺骗哈得斯”能力（1.0）|该英雄生命值+2.5%"
+                "description": "测试-第二阶技能左下描述"
               },
               "leftUp": {
                 "skillNodeSetKey": "troy_adi_archer_teucer",
@@ -124,9 +124,9 @@ export default {
                 "indent": 4,
                 "unlockAtRank": 0,
                 "enName": "Cheat Hades (Defence)",
-                "zhCnName": "欺骗哈得斯（防御）",
+                "zhCnName": "测试-第二阶技能左上",
                 "imagePath": "skill_node_icon_generic_vigour.png",
-                "description": "“欺骗哈得斯（防御）”特化（1.0）|替换“欺骗哈得斯”能力（1.0）|该英雄生命值+2.5%"
+                "description": "测试-第二阶技能左上描述"
               }
             }
           ]
