@@ -10,7 +10,9 @@
     <tr v-if="skillTree.first">
       <td rowspan="2">1</td>
       <td style="border-bottom: none"></td>
-      <td colspan="2" rowspan="2">{{ skillTree.first.zhCnName }}<br>{{ skillTree.first.description }}</td>
+      <td colspan="2" rowspan="2">
+        <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[skillTree.first]"/>
+      </td>
       <td style="border-bottom: none"></td>
     </tr>
     <tr v-if="skillTree.first">
@@ -21,18 +23,26 @@
       <tr>
         <td rowspan="2">{{ skillTree.first ? row.tier : row.tier - 1 }}</td>
         <td :style="row.leftDown?'border: 1px solid black;':'border: 0'">
-          {{ row.leftUp.zhCnName }}<br>{{ row.leftUp.description }}
+          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.leftUp]"/>
         </td>
-        <td rowspan="2">{{ row.left.zhCnName }}<br>{{ row.left.description }}</td>
-        <td rowspan="2">{{ row.right.zhCnName }}<br>{{ row.right.description }}</td>
+        <td rowspan="2">
+          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.left]"/>
+        </td>
+        <td rowspan="2">
+          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.right]"/>
+        </td>
         <td :style="row.rightDown?'border: 1px solid black;':'border: 0'">
-          {{ row.rightUp.zhCnName }}<br>{{ row.rightUp.description }}
+          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.rightUp]"/>
         </td>
       </tr>
       <tr>
-        <td v-if="row.leftDown">{{ row.leftDown.zhCnName }}<br>{{ row.leftDown.description }}</td>
+        <td v-if="row.leftDown">
+          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.leftDown]"/>
+        </td>
         <td v-else style="border-top: none"></td>
-        <td v-if="row.rightDown">{{ row.rightDown.zhCnName }}<br>{{ row.rightDown.description }}</td>
+        <td v-if="row.rightDown">
+          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.rightDown]"/>
+        </td>
         <td v-else style="border-top: none"></td>
       </tr>
     </template>
@@ -40,9 +50,22 @@
 </template>
 
 <script>
+import SkillPanel from "./SkillPanel.vue";
+import skillDetail from "../assets/skill-detail-data.json";
+
 export default {
   name: "SingleSkillTree",
+  components: {
+    'skill-panel': SkillPanel
+  },
   props: {
+    simplify: {
+      type: Boolean,
+      required: false,
+      default() {
+        return false;
+      }
+    },
     skillTree: {
       type: Object,
       required: false,
@@ -133,6 +156,17 @@ export default {
         };
       }
     }
+  },
+  data() {
+    return {
+      allSkillDetail: skillDetail
+    }
+  },
+  mounted() {
+    console.log("tree:simplify:" + this.simplify);
+    console.log("skillTree:" + JSON.stringify(this.skillTree));
+    console.log("first detail:" + JSON.stringify(this.allSkillDetail[this.skillTree.first]));
+
   }
 }
 </script>

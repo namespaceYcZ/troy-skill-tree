@@ -19,9 +19,10 @@
       {{ value }}
     </option>
   </select>
+  <label><input type="checkbox" @click="checkSimplify($event)"/>是否隐藏重复内容</label>
   <div style="margin: 10px;text-align: center">当前技能树：{{ currentTreeName }}</div>
   <single-skill-tree style="width: 90%;margin-left: 5%;margin-right: 5%;margin-bottom: 100px"
-                     :skill-tree="allSkillTrees[currentTree]"/>
+                     :skill-tree="allSkillTrees[currentTree]" :simplify="simplify"/>
 
 </template>
 
@@ -46,7 +47,8 @@ export default {
       currentTree: "troy_hero_achilles_skill_set",
       currentTreeName: "阿喀琉斯",
       allSkillTrees: skillTrees,
-      allOptions: options
+      allOptions: options,
+      simplify: []
     }
   },
   methods: {
@@ -66,6 +68,9 @@ export default {
       this.currentTreeName = this.currentTrees[this.currentTree]
       console.log("tree selected(name):" + this.currentTreeName)
       // console.log("currentTree:" + JSON.stringify(this.allSkillTrees[this.currentTree]))
+    },
+    checkSimplify(e) {
+      this.simplify = e.target.checked;
     }
   },
   mounted() {
