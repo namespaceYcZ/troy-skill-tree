@@ -1,5 +1,5 @@
 <template>
-  <span style="text-align: center; color: chocolate">{{ skillDetail.localisedName }}</span>
+  <span style="text-align: center; color: chocolate; font-weight: bold">{{ skillDetail.localisedName }}</span>
   <span style="text-align: left"
         v-for="e in skillDetail.effects">
     <template v-if="!simplify
