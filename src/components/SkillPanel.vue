@@ -2,16 +2,25 @@
   <span style="text-align: center; color: chocolate">{{ skillDetail.localisedName }}</span>
   <span style="text-align: left"
         v-for="e in skillDetail.effects">
-    <template v-if="!simplify||e.effectKey!=='troy_effect_hero_level_up_health'">
+    <template v-if="!simplify
+    ||(e.effectKey!=='troy_effect_hero_level_up_health'
+    &&e.effectKey!=='troy_effect_agent_enemy_success_chance_against_this_agent_per_level_HIDDEN')">
        <br>
-    {{ getDescription(effectDetail[e.effectKey].description, e.value) }}
+    <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"
+          :style="getStyleByEffect(effectDetail[e.effectKey])"
+          @click="clickEffect(effectDetail[e.effectKey])"></span>
     </template>
-
+  </span>
+  <span style="text-align: left"
+        v-for="a in skillDetail.ancillaries">
+       <br>
+    {{ ancillaryDetail[a]['localisedOnscreenName'] }}:{{ ancillaryDetail[a]['localisedColourText'] }}
   </span>
 </template>
 
 <script>
 import effect from "../assets/effect-detail-data.json";
+import ancillary from "../assets/ancillary-detail-data.json";
 
 export default {
   name: "SkillPanel",
@@ -63,23 +72,41 @@ export default {
   },
   data() {
     return {
-      effectDetail: effect
+      effectDetail: effect,
+      ancillaryDetail: ancillary,
     }
   },
   methods: {
     getDescription(raw, value) {
       if (raw === null) {
-        return ''
+        raw = ''
       } else if (raw.indexOf('%+n') === -1) {
-        return raw + "（" + value + "）"
+        raw = raw + "（" + value + "）"
       } else {
-        return raw.replaceAll('%+n', (value > 0 ? '+' : '-') + value);
+        raw = raw.replaceAll('%+n', (value > 0 ? '+' : '') + value);
+      }
+      raw = raw.replaceAll("[[col:green]]", "<span style='color: red'>")
+      raw = raw.replaceAll("[[/col]]", "</span>")
+      return raw;
+    },
+    getStyleByEffect(detail) {
+      if (detail['grantAbilities'].length > 0 || detail['grantAttributes'].length > 0) {
+        return 'color: #2440b3; cursor: pointer; text-decoration:underline;';
+      } else {
+        return '';
+      }
+    },
+    clickEffect(detail) {
+      if (detail['grantAbilities'].length > 0 || detail['grantAttributes'].length > 0) {
+        console.log("click:" + JSON.stringify(detail))
+      } else {
+        return console.log("nothing");
       }
 
     }
   },
   mounted() {
-    console.log("panel:simplify:" + this.simplify)
+    // console.log("panel:simplify:" + this.simplify)
   }
 }
 </script>

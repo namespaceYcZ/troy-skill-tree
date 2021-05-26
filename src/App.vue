@@ -48,7 +48,7 @@ export default {
       currentTreeName: "阿喀琉斯",
       allSkillTrees: skillTrees,
       allOptions: options,
-      simplify: []
+      simplify: false
     }
   },
   methods: {
