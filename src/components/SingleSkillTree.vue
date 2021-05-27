@@ -23,25 +23,25 @@
       <tr>
         <td rowspan="2">{{ skillTree.first ? row.tier : row.tier - 1 }}</td>
         <td :style="row.leftDown?'border: 1px solid black;':'border: 0'">
-          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.leftUp]"/>
+          <skill-panel :tooltip-pos="'right'" :simplify="simplify" :skill-detail="allSkillDetail[row.leftUp]"/>
         </td>
         <td rowspan="2">
-          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.left]"/>
+          <skill-panel :tooltip-pos="'right'" :simplify="simplify" :skill-detail="allSkillDetail[row.left]"/>
         </td>
         <td rowspan="2">
-          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.right]"/>
+          <skill-panel :tooltip-pos="'left'" :simplify="simplify" :skill-detail="allSkillDetail[row.right]"/>
         </td>
         <td :style="row.rightDown?'border: 1px solid black;':'border: 0'">
-          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.rightUp]"/>
+          <skill-panel :tooltip-pos="'left'" :simplify="simplify" :skill-detail="allSkillDetail[row.rightUp]"/>
         </td>
       </tr>
       <tr>
         <td v-if="row.leftDown">
-          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.leftDown]"/>
+          <skill-panel :tooltip-pos="'right'" :simplify="simplify" :skill-detail="allSkillDetail[row.leftDown]"/>
         </td>
         <td v-else style="border-top: none"></td>
         <td v-if="row.rightDown">
-          <skill-panel :simplify="simplify" :skill-detail="allSkillDetail[row.rightDown]"/>
+          <skill-panel :tooltip-pos="'left'" :simplify="simplify" :skill-detail="allSkillDetail[row.rightDown]"/>
         </td>
         <td v-else style="border-top: none"></td>
       </tr>

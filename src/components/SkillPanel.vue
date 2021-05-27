@@ -10,7 +10,9 @@
           @click="clickEffect(effectDetail[e.effectKey])"
           class="tooltip">
       <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"></span>
-      <span v-if="showTooltipByEffect(effectDetail[e.effectKey])" class="tooltiptext"><aa-panel :effect-detail="effectDetail[e.effectKey]"/></span>
+      <span v-if="showTooltipByEffect(effectDetail[e.effectKey])" :class="tooltipClass">
+        <aa-panel :effect-detail="effectDetail[e.effectKey]"/>
+      </span>
     </span>
     </template>
   </span>
@@ -25,12 +27,20 @@
 import effect from "../assets/effect-detail-data.json";
 import ancillary from "../assets/ancillary-detail-data.json";
 import AAPanel from "./AAPanel.vue";
+
 export default {
   name: "SkillPanel",
   components: {
     'aa-panel': AAPanel
   },
   props: {
+    tooltipPos: {
+      type: String,
+      required: false,
+      default() {
+        return "left";
+      }
+    },
     simplify: {
       type: Boolean,
       required: false,
@@ -80,7 +90,8 @@ export default {
     return {
       effectDetail: effect,
       ancillaryDetail: ancillary,
-      showTooltip: false
+      showTooltip: false,
+      tooltipClass: "tooltiptext-" + this.tooltipPos
     }
   },
   methods: {
@@ -129,32 +140,61 @@ export default {
   border-bottom: 1px dotted black;
 }
 
-.tooltip .tooltiptext {
+.tooltip .tooltiptext-right {
   visibility: hidden;
+  width: auto;
   background-color: black;
   color: #fff;
   text-align: center;
-  width: auto;
   border-radius: 6px;
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  top: 150%;
-  left: 50%;
+  top: -5px;
+  left: 110%;
 }
 
-.tooltip .tooltiptext::after {
+.tooltip .tooltiptext-right::after {
   content: "";
   position: absolute;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent black transparent;
+  border-color: transparent black transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltiptext-right {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext-left {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 110%;
+}
+
+.tooltip .tooltiptext-left::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+
+.tooltip:hover .tooltiptext-left {
   visibility: visible;
 }
 </style>
