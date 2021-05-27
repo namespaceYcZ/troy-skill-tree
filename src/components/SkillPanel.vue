@@ -83,10 +83,10 @@ export default {
       } else if (raw.indexOf('%+n') === -1) {
         raw = raw + "（" + value + "）"
       } else {
-        raw = raw.replaceAll('%+n', (value > 0 ? '+' : '') + value);
+        raw = raw.replace("%+n", (value > 0 ? '+' : '') + value);
       }
-      raw = raw.replaceAll("[[col:green]]", "<span style='color: red'>")
-      raw = raw.replaceAll("[[/col]]", "</span>")
+      raw = raw.replace("[[col:green]]", "<span style='color: green'>")
+      raw = raw.replace("[[/col]]", "</span>")
       return raw;
     },
     getStyleByEffect(detail) {
