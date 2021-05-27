@@ -6,9 +6,12 @@
     ||(e.effectKey!=='troy_effect_hero_level_up_health'
     &&e.effectKey!=='troy_effect_agent_enemy_success_chance_against_this_agent_per_level_HIDDEN')">
        <br>
-    <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"
-          :style="getStyleByEffect(effectDetail[e.effectKey])"
-          @click="clickEffect(effectDetail[e.effectKey])"></span>
+    <span :style="getStyleByEffect(effectDetail[e.effectKey])"
+          @click="clickEffect(effectDetail[e.effectKey])"
+          class="tooltip">
+      <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"></span>
+      <span v-if="showTooltipByEffect(effectDetail[e.effectKey])" class="tooltiptext"><aa-panel :effect-detail="effectDetail[e.effectKey]"/></span>
+    </span>
     </template>
   </span>
   <span style="text-align: left"
@@ -21,9 +24,12 @@
 <script>
 import effect from "../assets/effect-detail-data.json";
 import ancillary from "../assets/ancillary-detail-data.json";
-
+import AAPanel from "./AAPanel.vue";
 export default {
   name: "SkillPanel",
+  components: {
+    'aa-panel': AAPanel
+  },
   props: {
     simplify: {
       type: Boolean,
@@ -39,8 +45,8 @@ export default {
         return {
           key: "troy_main_hero_archer_skirmisher_self_mount_bow",
           imagePath: "skill_node_icon_generic_chariot_bow.png",
-          localisedName: "近战战车",
-          localisedDescription: "有些人说什么“从远处解决战斗的人根本算不上真正的战士”，他们根本不明白这需要什么样的技巧。",
+          localisedName: "未找到（显示标题）",
+          localisedDescription: "未找到（显示描述）",
           preBattleSpeechParameter: null,
           unlockedAtRank: 0,
           isBackgroundSkill: "FALSE",
@@ -74,6 +80,7 @@ export default {
     return {
       effectDetail: effect,
       ancillaryDetail: ancillary,
+      showTooltip: false
     }
   },
   methods: {
@@ -96,6 +103,9 @@ export default {
         return '';
       }
     },
+    showTooltipByEffect(detail) {
+      return detail['grantAbilities'].length > 0 || detail['grantAttributes'].length > 0;
+    },
     clickEffect(detail) {
       if (detail['grantAbilities'].length > 0 || detail['grantAttributes'].length > 0) {
         console.log("click:" + JSON.stringify(detail))
@@ -113,5 +123,38 @@ export default {
 </script>
 
 <style scoped>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  width: auto;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 </style>
