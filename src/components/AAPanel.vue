@@ -7,23 +7,14 @@
     <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['dataEffect']"><br>数据效果： {{ abilityDetail[ability]['dataEffect'] }}</span>
     <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['effectRange']>0"><br>生效范围：{{ abilityDetail[ability]['effectRange'] }}</span>
-    <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['attributeEffect']"><br>赋予属性：{{
         abilityDetail[ability]['attributeEffect']
       }}</span>
     <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['requiresEffectEnabling']==='FALSE'"><br>被动技能
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['numUses']>0"><br>限制次数：{{ abilityDetail[ability]['numUses'] }}
     </span>
     <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['activeTime']>0"><br>有效时间：{{ abilityDetail[ability]['activeTime'] }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['rechargeTime']>0"><br>冷却时间：{{ abilityDetail[ability]['rechargeTime'] }}
-    </span>
+          v-if="abilityDetail[ability]['effectRange']>0"><br>影响范围：{{ abilityDetail[ability]['effectRange'] }}</span>
     <span style="text-align: left;white-space: nowrap;"><br>影响目标：{{
         ' ' + (abilityDetail[ability]['affectSelf'] === 'TRUE' ? '自身' : '')
         + ' ' + getFriendEffected(abilityDetail[ability]['numEffectedFriendlyUnits'])
@@ -33,19 +24,16 @@
     <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['updateTargetsEveryFrame']==='TRUE'"><br>即时更新目标
     </span>
-    <span style="text-align: left;white-space: nowrap;"><br>施放目标：{{
-        ' ' + (abilityDetail[ability]['targetSelf'] === 'TRUE' ? '自身' : '')
-        + ' ' + (abilityDetail[ability]['targetFriends'] === 'TRUE' ? '友军' : '')
-        + ' ' + (abilityDetail[ability]['targetEnemies'] === 'TRUE' ? '敌军' : '')
-        + ' ' + (abilityDetail[ability]['targetGround'] === 'TRUE' ? '任意地面' : '')
-        + ' ' + (abilityDetail[ability]['targetGroundUnderAllies'] === 'TRUE' ? '友军下方地面' : '')
-        + ' ' + (abilityDetail[ability]['targetGroundUnderEnemies'] === 'TRUE' ? '敌军下方地面' : '')
-      }}
+    <span style="text-align: left;white-space: nowrap;"
+          v-if="abilityDetail[ability]['requiresEffectEnabling']==='FALSE'"><br>被动技能
     </span>
     <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['targetInterceptRange']>0"><br>施放距离：{{
-        abilityDetail[ability]['targetInterceptRange']
-      }}
+          v-if="abilityDetail[ability]['activeTime']>0"><br>持续时间：{{ abilityDetail[ability]['activeTime'] }}
+    </span>
+    <span style="text-align: left;white-space: nowrap;"
+          v-if="abilityDetail[ability]['rechargeTime']>0"><br>冷却时间：{{ abilityDetail[ability]['rechargeTime'] }}
+    </span>
+    <span style="text-align: left;white-space: nowrap;" v-html="getTargetDesc(abilityDetail[ability])">
     </span>
     <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['invalidUsageFlags']"><br>无效状态：{{
@@ -59,7 +47,7 @@
     </span>
     <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['rageCost']>0"><br>消耗怒气：{{
-        abilityDetail[ability]['rageCost']+"（"+abilityDetail[ability]['rageCostType']+"）"
+        abilityDetail[ability]['rageCost'] + "（" + abilityDetail[ability]['rageCostType'] + "）"
       }}
     </span>
     <span style="text-align: left;white-space: nowrap;"
@@ -117,7 +105,7 @@ export default {
       } else if (numEffectedFriendlyUnits < 0) {
         return '多个友军单位'
       } else {
-        return `${numEffectedFriendlyUnits}多个友军单位`
+        return `${numEffectedFriendlyUnits}个友军单位`
       }
     },
     getEnemyEffected(numEffectedEnemyUnits) {
@@ -127,7 +115,21 @@ export default {
       } else if (numEffectedEnemyUnits < 0) {
         return '多个敌军单位'
       } else {
-        return `${numEffectedEnemyUnits}多个敌军单位`
+        return `${numEffectedEnemyUnits}个敌军单位`
+      }
+    },
+    getTargetDesc(detail) {
+      let raw = ' ' + (detail['targetSelf'] === 'TRUE' ? '自身' : '')
+          + ' ' + (detail['targetFriends'] === 'TRUE' ? '友军' : '')
+          + ' ' + (detail['targetEnemies'] === 'TRUE' ? '敌军' : '')
+          + ' ' + (detail['targetGround'] === 'TRUE' ? '任意地面' : '')
+          + ' ' + (detail['targetGroundUnderAllies'] === 'TRUE' ? '友军下方地面' : '')
+          + ' ' + (detail['targetGroundUnderEnemies'] === 'TRUE' ? '敌军下方地面' : '');
+      raw = raw.trim();
+      if (raw === '' || raw === '自身') {
+        return '<br>无需选择施放目标';
+      } else {
+        return '<br>施放目标：' + raw + '<br>施放距离：' + detail['targetInterceptRange']
       }
     }
   }
