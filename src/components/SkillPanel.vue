@@ -106,6 +106,7 @@ export default {
     }
   },
   mounted() {
+    // console.log("skillDetail:" + JSON.stringify(this.skillDetail));
     // console.log("panel:simplify:" + this.simplify)
   }
 }

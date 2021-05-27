@@ -163,8 +163,8 @@ export default {
     }
   },
   mounted() {
-    console.log("skillTree:" + JSON.stringify(this.skillTree));
-    console.log("first detail:" + JSON.stringify(this.allSkillDetail[this.skillTree.first]));
+    /*console.log("skillTree:" + JSON.stringify(this.skillTree));
+    console.log("first detail:" + JSON.stringify(this.allSkillDetail[this.skillTree.first]));*/
   }
 }
 </script>

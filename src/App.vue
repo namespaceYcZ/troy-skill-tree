@@ -64,17 +64,17 @@ export default {
       this.currentTrees = this.currentTypes[this.currentType]['trees']
     },
     treeSelected() {
-      console.log("tree selected:" + this.currentTree)
       this.currentTreeName = this.currentTrees[this.currentTree]
+      /*console.log("tree selected:" + this.currentTree)
       console.log("tree selected(name):" + this.currentTreeName)
-      // console.log("currentTree:" + JSON.stringify(this.allSkillTrees[this.currentTree]))
+      console.log("currentTree:" + JSON.stringify(this.allSkillTrees[this.currentTree]))*/
     },
     checkSimplify(e) {
       this.simplify = e.target.checked;
     }
   },
   mounted() {
-    console.log("start!")
+    /*console.log("start!")*/
     this.currentFaction = "common";
     this.currentTypes = this.allOptions['factions'][this.currentFaction]['types'];
     this.currentType = "epic";
