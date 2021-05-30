@@ -1,64 +1,66 @@
 <template>
-  <span>
-  <span v-for="ability in effectDetail.grantAbilities">
-    <span style="text-align: center;white-space: nowrap;">
-      {{ abilityDetail[ability]['nameZhCn'] }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['dataEffect']"><br>数据效果： {{ abilityDetail[ability]['dataEffect'] }}</span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['attributeEffect']"><br>赋予属性：{{
-        abilityDetail[ability]['attributeEffect']
-      }}</span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['numUses']>0"><br>限制次数：{{ abilityDetail[ability]['numUses'] }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['effectRange']>0"><br>影响范围：{{ abilityDetail[ability]['effectRange'] }}</span>
-    <span style="text-align: left;white-space: nowrap;"><br>影响目标：{{
-        ' ' + (abilityDetail[ability]['affectSelf'] === 'TRUE' ? '自身' : '')
-        + ' ' + getFriendEffected(abilityDetail[ability]['numEffectedFriendlyUnits'])
-        + ' ' + getEnemyEffected(abilityDetail[ability]['numEffectedEnemyUnits'])
-      }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['updateTargetsEveryFrame']==='TRUE'"><br>即时更新目标
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['activeTime']>0"><br>持续时间：{{ abilityDetail[ability]['activeTime'] }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['rechargeTime']>0"><br>冷却时间：{{ abilityDetail[ability]['rechargeTime'] }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;" v-html="getTargetDesc(abilityDetail[ability])">
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['invalidUsageFlags']"><br>无效状态：{{
-        abilityDetail[ability]['invalidUsageFlags']
-      }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['invalidTargets']"><br>无效目标：{{
-        abilityDetail[ability]['invalidTargets'].replace('[[img:icon_general]][[/img]]','')
-      }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['rageCost']>0"><br>消耗怒气：{{
-        abilityDetail[ability]['rageCost'] + "（" + abilityDetail[ability]['rageCostType'] + "）"
-      }}
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['aristeiaPoints']>0"><br>增加辉煌点数：{{
-        abilityDetail[ability]['aristeiaPoints']
-      }}
-    </span>
-    <br>
-  </span>
-  <span v-for="attribute in effectDetail.grantAttributes">
-    <span style="text-align: left;white-space: nowrap;"><br>{{ attributeInfo[attribute]['description'] }}</span>
-    <br>
-  </span>
-  </span>
+  <div>
+    <div v-for="ability in effectDetail.grantAbilities">
+      <div style="text-align: center;white-space: nowrap;">
+        {{ abilityDetail[ability]['nameZhCn'] }}
+      </div>
+      <div v-if="abilityDetail[ability]['dataEffect']" style="text-align: left;white-space: nowrap;">
+        数据效果： {{ abilityDetail[ability]['dataEffect'] }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['attributeEffect']">赋予属性：{{
+          abilityDetail[ability]['attributeEffect']
+        }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['numUses']>0">限制次数：{{ abilityDetail[ability]['numUses'] }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['effectRange']>0">影响范围：{{ abilityDetail[ability]['effectRange'] }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;">影响目标：{{
+          ' ' + (abilityDetail[ability]['affectSelf'] === 'TRUE' ? '自身' : '')
+          + ' ' + getFriendEffected(abilityDetail[ability]['numEffectedFriendlyUnits'])
+          + ' ' + getEnemyEffected(abilityDetail[ability]['numEffectedEnemyUnits'])
+        }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['updateTargetsEveryFrame']==='TRUE'">即时更新目标
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['activeTime']>0">持续时间：{{ abilityDetail[ability]['activeTime'] }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['rechargeTime']>0">冷却时间：{{ abilityDetail[ability]['rechargeTime'] }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;" v-html="getTargetDesc(abilityDetail[ability])">
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['invalidUsageFlags']">无效状态：{{
+          abilityDetail[ability]['invalidUsageFlags']
+        }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['invalidTargets']">无效目标：{{
+          abilityDetail[ability]['invalidTargets'].replace('[[img:icon_general]][[/img]]', '')
+        }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['rageCost']>0">消耗怒气：{{
+          abilityDetail[ability]['rageCost'] + "（" + abilityDetail[ability]['rageCostType'] + "）"
+        }}
+      </div>
+      <div style="text-align: left;white-space: nowrap;"
+           v-if="abilityDetail[ability]['aristeiaPoints']>0">增加辉煌点数：{{
+          abilityDetail[ability]['aristeiaPoints']
+        }}
+      </div>
+    </div>
+    <div v-for="attribute in effectDetail.grantAttributes">
+      <span style="text-align: left;white-space: nowrap;"><br>{{ attributeInfo[attribute]['description'] }}</span>
+      <br>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -117,7 +119,7 @@ export default {
     },
     getTargetDesc(detail) {
       if (detail['passive'] === 'TRUE') {
-        return '<br>被动技能'
+        return '被动技能'
       }
       let raw = ' ' + (detail['targetSelf'] === 'TRUE' ? '自身' : '')
           + ' ' + (detail['targetFriends'] === 'TRUE' ? '友军' : '')
@@ -127,9 +129,9 @@ export default {
           + ' ' + (detail['targetGroundUnderEnemies'] === 'TRUE' ? '敌军下方地面' : '');
       raw = raw.trim();
       if (raw === '' || raw === '自身') {
-        return '<br>无需选择施放目标';
+        return '无需选择施放目标';
       } else {
-        return '<br>施放目标：' + raw + '<br>施放距离：' + detail['targetInterceptRange']
+        return '施放目标：' + raw + '<br>施放距离：' + detail['targetInterceptRange']
       }
     }
   }

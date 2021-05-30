@@ -1,26 +1,25 @@
 <template>
-  <span style="text-align: center; color: chocolate; font-weight: bold">{{ skillDetail.localisedName }}</span>
-  <span style="text-align: left"
-        v-for="e in skillDetail.effects">
+  <div style="text-align: center; color: chocolate; font-weight: bold">{{ skillDetail.localisedName }}</div>
+  <div v-for="e in skillDetail.effects" class="modal">
     <template v-if="!simplify
     ||(e.effectKey!=='troy_effect_hero_level_up_health'
     &&e.effectKey!=='troy_effect_agent_enemy_success_chance_against_this_agent_per_level_HIDDEN')">
-       <br>
-    <span :style="getStyleByEffect(effectDetail[e.effectKey])"
-          @click="clickEffect(effectDetail[e.effectKey])"
-          class="tooltip">
+    <a :style="getStyleByEffect(effectDetail[e.effectKey])"
+       @click="clickEffect(effectDetail[e.effectKey])">
       <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"></span>
-      <span v-if="showTooltipByEffect(effectDetail[e.effectKey])" :class="tooltipClass">
+    </a>
+    <div class="modal-window"
+         v-if="showTooltipByEffect(effectDetail[e.effectKey])">
+      <div>
         <aa-panel :effect-detail="effectDetail[e.effectKey]"/>
-      </span>
-    </span>
+      </div>
+    </div>
     </template>
-  </span>
-  <span style="text-align: left"
+  </div>
+  <div style="text-align: center"
         v-for="a in skillDetail.ancillaries">
-       <br>
     {{ ancillaryDetail[a]['localisedOnscreenName'] }}:{{ ancillaryDetail[a]['localisedColourText'] }}
-  </span>
+  </div>
 </template>
 
 <script>
@@ -34,13 +33,6 @@ export default {
     'aa-panel': AAPanel
   },
   props: {
-    tooltipPos: {
-      type: String,
-      required: false,
-      default() {
-        return "left";
-      }
-    },
     simplify: {
       type: Boolean,
       required: false,
@@ -91,7 +83,6 @@ export default {
       effectDetail: effect,
       ancillaryDetail: ancillary,
       showTooltip: false,
-      tooltipClass: "tooltiptext-" + this.tooltipPos
     }
   },
   methods: {
@@ -111,7 +102,7 @@ export default {
       if (detail['grantAbilities'].length > 0 || detail['grantAttributes'].length > 0) {
         return 'color: #2440b3; cursor: pointer; text-decoration:underline;';
       } else {
-        return '';
+        return 'color: black; cursor: default; text-decoration:none;';
       }
     },
     showTooltipByEffect(detail) {
@@ -134,66 +125,40 @@ export default {
 </script>
 
 <style scoped>
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext-right {
+.modal .modal-window {
   visibility: hidden;
-  width: auto;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 1;
-  top: -5px;
-  left: 110%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
 }
 
-.tooltip .tooltiptext-right::after {
-  content: "";
+.modal:hover .modal-window {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-window > div {
+  width: auto;
+  color: #fff;
+  border-radius: 6px;
   position: absolute;
   top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent black transparent transparent;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 1em;
+  background: black;
 }
 
-.tooltip:hover .tooltiptext-right {
-  visibility: visible;
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
 }
 
-.tooltip .tooltiptext-left {
-  visibility: hidden;
-  width: auto;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  top: -5px;
-  right: 110%;
-}
-
-.tooltip .tooltiptext-left::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent transparent black;
-}
-
-.tooltip:hover .tooltiptext-left {
-  visibility: visible;
-}
 </style>
