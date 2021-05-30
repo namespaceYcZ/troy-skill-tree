@@ -25,9 +25,6 @@
           v-if="abilityDetail[ability]['updateTargetsEveryFrame']==='TRUE'"><br>即时更新目标
     </span>
     <span style="text-align: left;white-space: nowrap;"
-          v-if="abilityDetail[ability]['requiresEffectEnabling']==='FALSE'"><br>被动技能
-    </span>
-    <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['activeTime']>0"><br>持续时间：{{ abilityDetail[ability]['activeTime'] }}
     </span>
     <span style="text-align: left;white-space: nowrap;"
@@ -42,7 +39,7 @@
     </span>
     <span style="text-align: left;white-space: nowrap;"
           v-if="abilityDetail[ability]['invalidTargets']"><br>无效目标：{{
-        abilityDetail[ability]['invalidTargets']
+        abilityDetail[ability]['invalidTargets'].replace('[[img:icon_general]][[/img]]','')
       }}
     </span>
     <span style="text-align: left;white-space: nowrap;"
@@ -119,6 +116,9 @@ export default {
       }
     },
     getTargetDesc(detail) {
+      if (detail['passive'] === 'TRUE') {
+        return '<br>被动技能'
+      }
       let raw = ' ' + (detail['targetSelf'] === 'TRUE' ? '自身' : '')
           + ' ' + (detail['targetFriends'] === 'TRUE' ? '友军' : '')
           + ' ' + (detail['targetEnemies'] === 'TRUE' ? '敌军' : '')
