@@ -5,12 +5,12 @@
         {{ abilityDetail[ability]['nameZhCn'] }}
       </div>
       <div v-if="abilityDetail[ability]['dataEffect']" style="text-align: left;white-space: nowrap;">
-        数据效果： {{ abilityDetail[ability]['dataEffect'] }}
+        数据效果：<span
+          v-html="abilityDetail[ability]['dataEffect'].replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')"/>
       </div>
       <div style="text-align: left;white-space: nowrap;"
-           v-if="abilityDetail[ability]['attributeEffect']">赋予属性：{{
-          abilityDetail[ability]['attributeEffect']
-        }}
+           v-if="abilityDetail[ability]['attributeEffect']">赋予属性：
+        <span v-html="abilityDetail[ability]['attributeEffect'].replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')"></span>
       </div>
       <div style="text-align: left;white-space: nowrap;"
            v-if="abilityDetail[ability]['numUses']>0">限制次数：{{ abilityDetail[ability]['numUses'] }}
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div v-for="attribute in effectDetail.grantAttributes">
-      <span style="text-align: left;white-space: nowrap;"><br>{{ attributeInfo[attribute]['description'] }}</span>
+      <span style="text-align: left;white-space: nowrap;"><br>{{ attributeInfo[attribute]['description'].replace('[[img:icon_morale]][[/img]]', '') }}</span>
       <br>
     </div>
   </div>
