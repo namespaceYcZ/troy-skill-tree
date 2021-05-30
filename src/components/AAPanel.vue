@@ -10,7 +10,8 @@
       </div>
       <div style="text-align: left;white-space: nowrap;"
            v-if="abilityDetail[ability]['attributeEffect']">赋予属性：
-        <span v-html="abilityDetail[ability]['attributeEffect'].replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')"></span>
+        <span
+            v-html="abilityDetail[ability]['attributeEffect'].replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')"></span>
       </div>
       <div style="text-align: left;white-space: nowrap;"
            v-if="abilityDetail[ability]['numUses']>0">限制次数：{{ abilityDetail[ability]['numUses'] }}
@@ -18,11 +19,8 @@
       <div style="text-align: left;white-space: nowrap;"
            v-if="abilityDetail[ability]['effectRange']>0">影响范围：{{ abilityDetail[ability]['effectRange'] }}
       </div>
-      <div style="text-align: left;white-space: nowrap;">影响目标：{{
-          ' ' + (abilityDetail[ability]['affectSelf'] === 'TRUE' ? '自身' : '')
-          + ' ' + getFriendEffected(abilityDetail[ability]['numEffectedFriendlyUnits'])
-          + ' ' + getEnemyEffected(abilityDetail[ability]['numEffectedEnemyUnits'])
-        }}
+      <div style="text-align: left;white-space: nowrap;">影响目标：<span v-html="joinEffected(abilityDetail[ability])">
+      </span>
       </div>
       <div style="text-align: left;white-space: nowrap;"
            v-if="abilityDetail[ability]['updateTargetsEveryFrame']==='TRUE'">即时更新目标
@@ -57,7 +55,9 @@
       </div>
     </div>
     <div v-for="attribute in effectDetail.grantAttributes">
-      <span style="text-align: left;white-space: nowrap;"><br>{{ attributeInfo[attribute]['description'].replace('[[img:icon_morale]][[/img]]', '') }}</span>
+      <span style="text-align: left;white-space: nowrap;"><br>{{
+          attributeInfo[attribute]['description'].replace('[[img:icon_morale]][[/img]]', '')
+        }}</span>
       <br>
     </div>
   </div>
@@ -97,6 +97,21 @@ export default {
 
   },
   methods: {
+    joinEffected(ability) {
+      let arr = [];
+      if (ability['affectSelf'] === 'TRUE') {
+        arr.push('自身')
+      }
+      let friendEffected = this.getFriendEffected(ability['numEffectedFriendlyUnits']);
+      if (friendEffected !== '') {
+        arr.push(friendEffected)
+      }
+      let enemyEffected = this.getEnemyEffected(ability['numEffectedEnemyUnits']);
+      if (enemyEffected !== '') {
+        arr.push(enemyEffected)
+      }
+      return arr.join('<br>&emsp;&emsp;&emsp;&emsp;&emsp;')
+    },
     getFriendEffected(numEffectedFriendlyUnits) {
       console.log("numEffectedFriendlyUnits:" + numEffectedFriendlyUnits)
       if (numEffectedFriendlyUnits === 0) {

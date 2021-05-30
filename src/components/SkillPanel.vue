@@ -4,20 +4,20 @@
     <template v-if="!simplify
     ||(e.effectKey!=='troy_effect_hero_level_up_health'
     &&e.effectKey!=='troy_effect_agent_enemy_success_chance_against_this_agent_per_level_HIDDEN')">
-    <a :style="getStyleByEffect(effectDetail[e.effectKey])"
-       @click="clickEffect(effectDetail[e.effectKey])">
-      <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"></span>
-    </a>
-    <div class="modal-window"
-         v-if="showTooltipByEffect(effectDetail[e.effectKey])">
-      <div>
-        <aa-panel :effect-detail="effectDetail[e.effectKey]"/>
+      <a :style="getStyleByEffect(effectDetail[e.effectKey])"
+         @click="clickEffect(effectDetail[e.effectKey])">
+        <span v-html="getDescription(effectDetail[e.effectKey].description, e.value)"></span>
+      </a>
+      <div class="modal-window"
+           v-if="showTooltipByEffect(effectDetail[e.effectKey])">
+        <div>
+          <aa-panel :effect-detail="effectDetail[e.effectKey]"/>
+        </div>
       </div>
-    </div>
     </template>
   </div>
   <div style="text-align: center"
-        v-for="a in skillDetail.ancillaries">
+       v-for="a in skillDetail.ancillaries">
     {{ ancillaryDetail[a]['localisedOnscreenName'] }}:{{ ancillaryDetail[a]['localisedColourText'] }}
   </div>
 </template>
@@ -87,10 +87,8 @@ export default {
   },
   methods: {
     getDescription(raw, value) {
-      if (raw === null) {
-        raw = ''
-      } else if (raw.indexOf('%+n') === -1) {
-        raw = raw + "（" + value + "）"
+      if (raw === null || raw.indexOf('%+n') === -1) {// raw = raw + "（" + value + "）"
+        raw = raw.trim();
       } else {
         raw = raw.replace("%+n", (value > 0 ? '+' : '') + value);
       }
