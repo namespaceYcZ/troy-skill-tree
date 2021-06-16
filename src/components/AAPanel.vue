@@ -9,9 +9,10 @@
           v-html="abilityDetail[ability]['dataEffect'].replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')"/>
       </div>
       <div style="text-align: left;white-space: nowrap;"
-           v-if="abilityDetail[ability]['attributeEffect']">赋予属性：
-        <span
-            v-html="abilityDetail[ability]['attributeEffect'].replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')"></span>
+           v-if="abilityDetail[ability]['attributeEffect']">赋予属性：<span
+          v-html="abilityDetail[ability]['attributeEffect']
+            .replace(new RegExp('\\|','g'),'<br>&emsp;&emsp;&emsp;&emsp;&emsp;')">
+      </span>
       </div>
       <div style="text-align: left;white-space: nowrap;"
            v-if="abilityDetail[ability]['numUses']>0">限制次数：{{ abilityDetail[ability]['numUses'] }}

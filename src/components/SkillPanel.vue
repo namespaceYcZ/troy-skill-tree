@@ -87,10 +87,10 @@ export default {
   },
   methods: {
     getDescription(raw, value) {
-      if (raw === null || raw.indexOf('%+n') === -1) {// raw = raw + "（" + value + "）"
+      if (raw === null || (raw.indexOf('%+n') === -1 && raw.indexOf('%n') === -1)) {// raw = raw + "（" + value + "）"
         raw = raw.trim();
       } else {
-        raw = raw.replace("%+n", (value > 0 ? '+' : '') + value);
+        raw = raw.replace("%+n", (value > 0 ? '+' : '') + value).replace("%n", value);
       }
       raw = raw.replace("[[col:green]]", "<span style='color: green'>")
       raw = raw.replace("[[/col]]", "</span>")
