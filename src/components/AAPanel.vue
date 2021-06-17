@@ -114,7 +114,7 @@ export default {
       return arr.join('<br>&emsp;&emsp;&emsp;&emsp;&emsp;')
     },
     getFriendEffected(numEffectedFriendlyUnits) {
-      console.log("numEffectedFriendlyUnits:" + numEffectedFriendlyUnits)
+      // console.log("numEffectedFriendlyUnits:" + numEffectedFriendlyUnits)
       if (numEffectedFriendlyUnits === 0) {
         return ''
       } else if (numEffectedFriendlyUnits < 0) {
@@ -124,7 +124,7 @@ export default {
       }
     },
     getEnemyEffected(numEffectedEnemyUnits) {
-      console.log("numEffectedEnemyUnits:" + numEffectedEnemyUnits)
+      // console.log("numEffectedEnemyUnits:" + numEffectedEnemyUnits)
       if (numEffectedEnemyUnits === 0) {
         return ''
       } else if (numEffectedEnemyUnits < 0) {

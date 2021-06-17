@@ -16,9 +16,14 @@
       </div>
     </template>
   </div>
-  <div style="text-align: center"
+  <div style="text-align: center; cursor: pointer; color: #42b983" class="modal"
        v-for="a in skillDetail.ancillaries">
     {{ ancillaryDetail[a]['localisedOnscreenName'] }}:{{ ancillaryDetail[a]['localisedColourText'] }}
+    <div class="modal-window">
+      <div>
+        <unit-change-panel :provided-bodyguard-unit="ancillaryDetail[a]['providedBodyguardUnit']"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,11 +31,13 @@
 import effect from "../assets/effect-detail-data.json";
 import ancillary from "../assets/ancillary-detail-data.json";
 import AAPanel from "./AAPanel.vue";
+import UnitChangePanel from "./UnitChangePanel.vue";
 
 export default {
   name: "SkillPanel",
   components: {
-    'aa-panel': AAPanel
+    'aa-panel': AAPanel,
+    'unit-change-panel': UnitChangePanel
   },
   props: {
     simplify: {
