@@ -1,7 +1,7 @@
 <template>
   <div style="text-align: left">
     <div>单位：{{ current['nameZhCn'] }}</div>
-    <div>HP：{{ changedValue(original['singleHp'], current['singleHp']) }}</div>
+    <div v-if="false">HP：{{ changedValue(original['singleHp'], current['singleHp']) }}</div>
     <div>护甲：{{ changedValue(original['armour'], current['armour']) }}</div>
     <div>盾挡：{{ changedValue(original['missileBlockChance'], current['missileBlockChance']) }}</div>
     <div>士气：{{ changedValue(original['morale'], current['morale']) }}</div>
